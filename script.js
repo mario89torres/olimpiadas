@@ -3,7 +3,7 @@ const tracks = [
         id: 0,
         name: "Águilas",
         house: "Team Águilas",
-        file: "Aguilas.mp3",
+        file: "aguilas.mp3",
         icon: "bird",
         color: "#f59e0b"
     },
@@ -11,7 +11,7 @@ const tracks = [
         id: 1,
         name: "Caimanes",
         house: "Team Caimanes",
-        file: "Caimanes x Caimanes x Caimanes (M… x Caimanes x Caimanes x Caimanes (M… (Mashup).mp3",
+        file: "caimanes.mp3",
         icon: "droplets",
         color: "#10b981"
     },
@@ -19,7 +19,7 @@ const tracks = [
         id: 2,
         name: "Guacamayas",
         house: "Team Guacamayas",
-        file: "guaca x guacamayas (Mashup).mp3",
+        file: "guacamayas.mp3",
         icon: "feather",
         color: "#ef4444"
     },
@@ -27,7 +27,7 @@ const tracks = [
         id: 3,
         name: "Jaguares",
         house: "Team Jaguares",
-        file: "Jaguarers x Jaguares (Mashup).mp3",
+        file: "jaguares.mp3",
         icon: "cat",
         color: "#fbbf24"
     },
@@ -35,7 +35,7 @@ const tracks = [
         id: 4,
         name: "Lobos",
         house: "Team Lobos",
-        file: "lobos x lobos (Mashup).mp3",
+        file: "lobos.mp3",
         icon: "dog",
         color: "#64748b"
     },
@@ -43,7 +43,7 @@ const tracks = [
         id: 5,
         name: "Quetzales",
         house: "Team Quetzales",
-        file: "quetzales x quetzales (Mashup).mp3",
+        file: "quetzales.mp3",
         icon: "wind",
         color: "#22c55e"
     },
@@ -51,7 +51,7 @@ const tracks = [
         id: 6,
         name: "Serpientes",
         house: "Team Serpientes",
-        file: "Serpientes x Serpientes (Mashup).mp3",
+        file: "serpientes.mp3",
         icon: "zap",
         color: "#8b5cf6"
     },
@@ -59,7 +59,7 @@ const tracks = [
         id: 7,
         name: "Xolos",
         house: "Team Xolos",
-        file: "Xolos x Xols (Mashup).mp3",
+        file: "xolos.mp3",
         icon: "skull",
         color: "#475569"
     },
@@ -67,7 +67,7 @@ const tracks = [
         id: 8,
         name: "Himno Innova",
         house: "Olimpiadas General",
-        file: "innovaOlimpiadas.mp3",
+        file: "innova.mp3",
         icon: "trophy",
         color: "#FFCD00"
     }
@@ -185,8 +185,8 @@ function togglePlay() {
         playIcon.classList.remove('hidden');
         pauseIcon.classList.add('hidden');
     } else {
-        audio.play();
-        playIcon.classList.remove('hidden');
+        audio.play().catch(e => console.log("Autoplay blocked or load failed:", e));
+        playIcon.classList.add('hidden');
         pauseIcon.classList.remove('hidden');
     }
     isPlaying = !isPlaying;
