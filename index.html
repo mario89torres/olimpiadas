@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpiadas Innova Schools - Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Library -->
+        <aside class="library-sidebar">
+            <header class="library-header">
+                <h2>LIBRARY <span>(8 Tracks)</span></h2>
+            </header>
+            <div class="track-list" id="sidebar-list">
+                <!-- Tracks will be injected here by JS -->
+            </div>
+            <div class="sidebar-footer">
+                <p>INNOVA SCHOOLS 2026</p>
+            </div>
+        </aside>
+
+        <!-- Main Player -->
+        <main class="player-main">
+            <header class="player-header">
+                <h1 id="main-title">Olympic Anthems Player</h1>
+                <div class="account-link"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Olympic_rings_without_rims.svg" alt="Olympic Rings" class="rings"></div>
+            </header>
+
+            <div class="player-viewport">
+                <!-- Decorative Outer Rings -->
+                <div class="ring outer-gold"></div>
+                <div class="ring middle-silver"></div>
+                
+                <!-- Circular Dial -->
+                <div class="dial-container" id="dial-container">
+                    <div class="dial" id="main-dial">
+                        <!-- 8 segments will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Central Core (Medal) -->
+                <div class="core-medal">
+                    <div class="album-art-container">
+                        <div class="art-glow"></div>
+                        <img src="" id="core-art" class="album-art" alt="Art">
+                    </div>
+                    
+                    <div class="track-info">
+                        <h3 id="current-track-name">Select a Track</h3>
+                        <p id="current-track-house">House Name</p>
+                        <div class="time-control">
+                            <span id="current-time">0:00</span>
+                            <div class="progress-container" id="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                            <span id="total-duration">0:00</span>
+                        </div>
+                    </div>
+
+                    <div class="playback-controls">
+                        <button class="ctrl-btn" id="shuffle-btn"><i data-lucide="shuffle"></i></button>
+                        <button class="ctrl-btn" id="prev-btn"><i data-lucide="skip-back"></i></button>
+                        <button class="ctrl-btn play-pause" id="play-pause-btn">
+                            <i data-lucide="play" id="play-icon"></i>
+                            <i data-lucide="pause" id="pause-icon" class="hidden"></i>
+                        </button>
+                        <button class="ctrl-btn" id="next-btn"><i data-lucide="skip-forward"></i></button>
+                        <button class="ctrl-btn" id="repeat-btn"><i data-lucide="repeat"></i></button>
+                    </div>
+                    
+                    <!-- Decorative Torch/Medal Bottom -->
+                    <div class="core-bottom-deco"></div>
+                </div>
+
+                <!-- Floating Custom Sport Icons -->
+                <div class="sport-badge pos-1"><img src="flat_boliche_encesta_1774349296326.png" alt="Boliche"></div>
+                <div class="sport-badge pos-2"><img src="flat_mimica_1774349323302.png" alt="Mimica"></div>
+                <div class="sport-badge pos-3"><img src="flat_tangram_1774349308607.png" alt="Tangram"></div>
+                <div class="sport-badge pos-4"><img src="flat_boliche_encesta_1774349296326.png" alt="Sports" style="filter: hue-rotate(90deg);"></div>
+                <div class="sport-badge pos-5"><img src="flat_tangram_1774349308607.png" alt="Strategy" style="filter: contrast(1.2);"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audio-player"></audio>
+
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
