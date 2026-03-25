@@ -1,25 +1,19 @@
 :root {
     --gold: #d4af37;
-    --gold-bright: #FFCD00;
+    --gold-bright: #FFD700;
+    --gold-gradient: linear-gradient(135deg, #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%);
     --silver: #C0C0C0;
     --bronze: #CD7F32;
     --navy: #0033A0;
-    --dark-bg: #0a0f1e;
-    --sidebar-bg: rgba(0, 0, 0, 0.6);
-    --glass: rgba(255, 255, 255, 0.05);
-    --accent: #FFCD00;
+    --dark-bg: #050a14;
+    --sidebar-bg: rgba(0, 0, 0, 0.7);
+    --glass: rgba(255, 255, 255, 0.08);
+    --accent: #FFD700;
     
-    /* Responsive sizing variables */
-    --player-size: 600px;
-    --core-size: 300px;
-    --segment-size: 140px;
-    --radius: 220px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --player-size: 650px;
+    --core-size: 320px;
+    --segment-size: 150px;
+    --radius: 240px;
 }
 
 body {
@@ -28,19 +22,7 @@ body {
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
-    background-image: url('https://images.unsplash.com/photo-1541252260730-0412e8e2108e?q=80&w=2000&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-body::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(10, 15, 30, 0.85);
-    backdrop-filter: blur(10px);
-    z-index: -1;
+    background-image: radial-gradient(circle at 50% 50%, #1a2a4a 0%, #050a14 100%);
 }
 
 .app-container {
@@ -49,200 +31,147 @@ body::before {
     width: 100vw;
 }
 
-/* Sidebar Styling (Back to clean glass) */
 .library-sidebar {
-    width: 350px;
+    width: 380px;
     background: var(--sidebar-bg);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 2px solid var(--gold);
     display: flex;
     flex-direction: column;
     z-index: 10;
-    transition: all 0.3s ease;
+    backdrop-filter: blur(20px);
 }
 
 .library-header {
-    padding: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(212, 175, 55, 0.05);
 }
 
 .library-header h2 {
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-}
-
-.track-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
 }
 
 .track-item {
     display: flex;
     align-items: center;
-    padding: 0.8rem;
-    margin-bottom: 0.5rem;
-    border-radius: 12px;
+    padding: 1rem;
+    margin: 0.5rem 1rem;
+    border-radius: 15px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid transparent;
 }
 
-.track-item .thumb-icon {
-    width: 45px;
-    height: 45px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    margin-right: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.track-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(10px);
 }
 
 .track-item.active {
-    background: linear-gradient(90deg, rgba(0, 51, 160, 0.4) 0%, transparent 100%);
-    border-left: 4px solid var(--gold-bright);
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
-/* Main Player Area */
-.player-main {
-    flex: 1;
+.core-medal {
+    position: absolute;
+    width: var(--core-size);
+    height: var(--core-size);
+    background: var(--gold-gradient);
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
-    position: relative;
-    overflow: hidden;
-}
-
-.player-header {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem;
+    justify-content: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(255,255,255,0.5);
+    border: 10px solid #b8860b;
+    z-index: 5;
+    padding: 2rem;
+    text-align: center;
+    color: #333;
 }
 
-.rings {
-    height: 24px;
-    filter: brightness(0) invert(1);
+.core-medal h3 {
+    font-weight: 800;
+    font-size: 1.4rem;
+    margin-bottom: 0.2rem;
 }
 
-/* Circular Viewport */
-.player-viewport {
-    flex: 1;
+.core-medal p {
+    font-weight: 500;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+.play-pause {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    color: var(--gold-bright);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-}
-
-.ring {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
     transition: all 0.3s ease;
-    z-index: 1;
 }
 
-.outer-gold {
-    width: var(--player-size);
-    height: var(--player-size);
-    border: 10px solid var(--gold);
-    opacity: 0.2;
-}
-
-.middle-silver {
-    width: calc(var(--player-size) - 60px);
-    height: calc(var(--player-size) - 60px);
-    border: 2px solid var(--silver);
-    opacity: 0.1;
-}
-
-/* Dial Engine */
-.dial-container {
-    width: calc(var(--player-size) - 80px);
-    height: calc(var(--player-size) - 80px);
-    position: relative;
-    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
-}
-
-.segment {
-    position: absolute;
-    width: var(--segment-size);
-    left: 50%;
-    top: 50%;
-    transform-origin: 0% 0%;
-    cursor: pointer;
+.play-pause:hover {
+    transform: scale(1.1);
+    background: #000;
+    box-shadow: 0 0 25px var(--gold);
 }
 
 .segment-content {
     position: absolute;
     width: 100%;
-    padding: 0.8rem;
-    background: var(--glass);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 20px;
     text-align: center;
     transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
 }
 
 .segment.active .segment-content {
-    background: rgba(0, 51, 160, 0.6);
+    background: rgba(0, 51, 160, 0.8);
     border-color: var(--gold-bright);
-    box-shadow: 0 0 30px rgba(255, 205, 0, 0.3);
+    box-shadow: 0 0 40px var(--gold-bright);
+    transform: translate(-50%, -50%) scale(1.15);
 }
 
-/* Central Core Medal */
-.core-medal {
-    position: absolute;
-    width: var(--core-size);
-    height: var(--core-size);
-    background: radial-gradient(circle at center, #f0d080 0%, var(--gold) 70%, #806020 100%);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    border: 6px solid #b8860b;
-    z-index: 5;
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.core-icon-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Original Decorative components adjusted to vars */
 .sport-badge {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle, #fff 0%, #ddd 100%);
+    width: 60px;
+    height: 60px;
+    background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #444;
-    border: 3px solid #888;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 4px solid var(--gold);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     z-index: 3;
-    overflow: hidden;
-    padding: 8px;
+    animation: float 6s ease-in-out infinite;
 }
 
-.sport-badge img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
 }
+
+.pos-1 { top: 15%; left: 15%; animation-delay: 0s; }
+.pos-2 { top: 20%; right: 15%; animation-delay: 1s; }
+.pos-3 { bottom: 20%; left: 20%; animation-delay: 2s; }
+.pos-4 { bottom: 15%; right: 20%; animation-delay: 3s; }
+.pos-5 { top: 50%; right: 5%; animation-delay: 4s; }
+
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
